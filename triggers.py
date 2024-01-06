@@ -34,7 +34,7 @@ async def {name}(client, message):"""
 
         i = i + 1
 
-    code = code + f"\n\nadd_module('{name}')"
+    code = code + f"\n\nadd_module('{name}', __file__)"
     code = code + f"\nadd_command('{name}', '{prefix}{name}', 'кастомная анимация')"
 
     f = open(f"plugins/{name}.py", "w", encoding='utf-8')
