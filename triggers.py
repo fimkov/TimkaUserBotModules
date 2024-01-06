@@ -43,7 +43,7 @@ async def {name}(client, message):"""
 
     await message.edit("Команда успешно создана!")
     await message.reply("<b>Перезагружаю юзербота...</b>")
-    await restart(message=message.chat.id)
+    await restart(message=message)
 
 add_module("triggers", __file__)
 add_command("triggers", f"{prefix}trigger [имя команды] [задержка между изменениями] и дальше на каждой новой строке текст для изменения", "создаёт кастомную анимацию")
