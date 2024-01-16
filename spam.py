@@ -12,6 +12,7 @@ async def spam_func(client, message):
     global spam
     if spam == True:
         await message.edit("Спам уже запущен")
+        return
     try:
         count = message.command[1]
         time = message.command[2]
