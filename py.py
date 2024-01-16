@@ -5,6 +5,7 @@ from io import StringIO
 from helps.modules import add_module, add_command
 from helps.get_prefix import get_prefix
 from helps.scripts import get_lang
+import asyncio
 
 lang = get_lang()
 prefix = get_prefix()
