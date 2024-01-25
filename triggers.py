@@ -29,11 +29,12 @@ class Texts:
 
 @Client.on_message(filters.command("trigger", prefix) & filters.me)
 async def anim_add(client, message):
+    text_versions = Texts.get_texts()
     try:
         name = message.command[1]
         sleep = message.command[2]
     except IndexError:
-        await message.edit()
+        await message.edit(text_versions["help"][lang])
         return
     code = f"""from pyrogram import Client, filters
 from helps.modules import add_module, add_command
@@ -69,8 +70,8 @@ async def {name}(client, message):"""
     f.write(code)
     f.close()
 
-    await message.edit()
-    await message.reply()
+    await message.edit(text_versions['successfully'][lang])
+    await message.reply(text_versions['reload'][lang])
     await restart(message=message)
 
 
