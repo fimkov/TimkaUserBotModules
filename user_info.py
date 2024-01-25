@@ -50,7 +50,7 @@ class Texts:
 <b>├  SCAM:</b> <code>{info.is_scam}</code>
 <b>├  PREMIUM-SUBSCRIPTION:</b> <code>{info.is_premium}</code>
 <b>├  STATUS:</b> <code>{str(info.status).replace("UserStatus.", "")}</code>
-<b>├  DC:</b> <code>{info.dc_id}</code>
+<b>└  DC:</b> <code>{info.dc_id}</code>
     """.replace("True", "yes").replace("False", "no")
             }
         }
