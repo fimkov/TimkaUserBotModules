@@ -32,7 +32,6 @@ async def anim_add(client, message):
     text_versions = Texts.get_texts()
     try:
         name = message.command[1]
-        sleep = message.command[2]
     except IndexError:
         await message.edit(text_versions["help"][lang])
         return
@@ -50,12 +49,30 @@ async def {name}(client, message):"""
 
     aims = message.text.splitlines()
     i = 0
+    o = 0
 
     for a in aims:
         if i == 0:
             pass
         else:
-            code = code + f"\n    await message.edit('{a}')\n    await asyncio.sleep({sleep})"
+            b = a.split()
+            if b[0] == "edit":
+                if o == 0:
+                    code = code + f"\n    await message.edit('{a.replace(b[0] + ' ', '')}')"
+                else:
+                    code = code + f"\n    await pensil.edit('{a.replace(b[0] + ' ', '')}')"
+            elif b[0] == "send":
+                o = 1
+                code = code + f"\n    pensil = await message.reply('{a.replace(b[0] + ' ', '')}')"
+            elif b[0] == "sleep":
+                code = code + f"\n    await asyncio.sleep({a.replace(b[0] + ' ', '')})"
+            elif b[0] == "remove":
+                if o == 0:
+                    code = code + f"\n    await message.delete()"
+                else:
+                    code = code + f"\n    await pensil.delete()"
+            else:
+                code = code + f"\n    await message.edit('{a}')"
 
         i = i + 1
 
@@ -78,10 +95,10 @@ async def {name}(client, message):"""
 if lang == "ru":
     add_module("triggers", __file__)
     add_command("triggers",
-                f"{prefix}trigger [имя команды] [задержка между изменениями] и дальше на каждой новой строке текст для изменения",
+                f"{prefix}trigger [имя команды] и дальше на каждой новой строке действие и аргумент. Все действия: https://telegra.ph/Using-the-triggers-module-03-08",
                 "создаёт кастомную анимацию")
 else:
     add_module("triggers", __file__)
     add_command("triggers",
-                f"{prefix}trigger [command name] [delay between changes] and then on each new line the text to change",
+                f"{prefix}trigger [command name] and then on each new line an action and an argument. All actions: https://telegra.ph/Using-the-triggers-module-03-08",
                 "creates custom animation")
