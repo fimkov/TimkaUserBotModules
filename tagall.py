@@ -3,6 +3,7 @@ from helps.modules import add_module, add_command
 from helps.scripts import restart
 from helps.get_prefix import get_prefix
 from helps.scripts import get_lang
+import asyncio
 
 lang = get_lang()
 prefix = get_prefix()
@@ -40,6 +41,7 @@ async def tagall(client, message):
                 await message.reply(f"{arg} | {tags}")
                 count = 0
                 tags = ""
+                asycnio.sleep(3)
             else:
                 tags = tags + " " + member.user.mention("<spoiler>.</spoiler>")
                 count = + 1
