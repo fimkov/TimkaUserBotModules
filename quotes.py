@@ -1,4 +1,6 @@
 # PORTED FROM DragonUserBot
+import pip
+pip.main(['install', 'pillow', '-U'])
 from typing import LiteralString
 from pyrogram import Client, filters, types, errors
 from helps.modules import add_module, add_command
